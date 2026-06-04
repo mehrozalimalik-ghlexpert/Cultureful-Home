@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cultureful™ — When People Thrive, Organizations Perform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300&family=Crimson+Pro:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DESIGN TOKENS — CULTUREFUL WARM MASTER BRAND
+============================================================ */
+:root {
+  --orange:        #F5821F;
+  --orange-hover:  #E06D0A;
+  --ink:           #231F20;
+  --body:          #5A5A5A;
+  --white:         #FFFFFF;
+  --off-white:     #FAF7F2;  /* legacy — phased out in favour of --bg-light */
+  --bg-light:      #F7F4EF;  /* single warm light — replaces white/cream alternation */
+  --divider-light: #E5E1D8;  /* hairline between adjacent light sections */
+  --surface-dark:  #262220;  /* elevated card on dark background */
+  --blue:          #107EB3;
+  --dark:          #1C1A1A;
+  --border:        #E8E4DC;
+  --border-dark:   rgba(255,255,255,0.09);
+  --shadow:        0 4px 24px rgba(35,31,32,0.08);
+  --shadow-hover:  0 16px 48px rgba(35,31,32,0.14);
+  --r-card:        18px;
+  --r-btn:         8px;
+  --max:           1200px;
+  --pad:           112px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--white);color:var(--ink);font-family:'Roboto',sans-serif;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{text-decoration:none;color:inherit;}
+ul{list-style:none;}
+
+/* ---- TYPE ---- */
+h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif;color:var(--ink);line-height:1.08;letter-spacing:-0.025em;}
+h1{font-size:64px;font-weight:800;}
+h2{font-size:44px;font-weight:800;}
+h3{font-size:26px;font-weight:700;}
+h4{font-size:18px;font-weight:700;}
+.serif{font-family:'Crimson Pro',Georgia,serif;}
+.orange{color:var(--orange);}
+p.body{color:var(--body);font-size:17px;line-height:1.72;}
+
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Roboto',sans-serif;font-size:12px;font-weight:700;
+  letter-spacing:0.14em;text-transform:uppercase;color:var(--orange);
+  margin-bottom:16px;
+}
+.ey-dot{width:7px;height:7px;border-radius:50%;background:var(--orange);flex-shrink:0;}
+.eyebrow-center{justify-content:center;}
+
+/* ---- LAYOUT ---- */
+.container{max-width:var(--max);margin:0 auto;padding:0 48px;}
+.section{padding:var(--pad) 0;}
+
+/* ---- BUTTONS ---- */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Roboto',sans-serif;font-weight:700;font-size:15px;
+  padding:15px 30px;border-radius:var(--r-btn);border:2px solid transparent;
+  cursor:pointer;transition:background .2s,border-color .2s,transform .2s,box-shadow .2s;
+  white-space:nowrap;
+}
+.btn-primary{background:var(--orange);color:#fff;border-color:var(--orange);}
+.btn-primary:hover{background:var(--orange-hover);border-color:var(--orange-hover);transform:translateY(-1px);box-shadow:0 8px 24px rgba(245,130,31,.32);}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--ink);}
+.btn-ghost:hover{background:var(--ink);color:#fff;}
+.btn-ghost-w{background:transparent;color:#fff;border-color:rgba(255,255,255,.6);}
+.btn-ghost-w:hover{background:rgba(255,255,255,.12);border-color:#fff;}
+.btn-lg{font-size:16px;padding:17px 36px;}
+.btn-text-link{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:'Roboto',sans-serif;font-weight:700;font-size:15px;
+  color:var(--orange);background:none;border:none;cursor:pointer;
+  transition:gap .2s,color .2s;
+}
+.btn-text-link:hover{gap:10px;color:var(--orange-hover);}
+
+/* ============================================================
+   NAVIGATION
+============================================================ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  padding:0 48px;
+  transition:background .3s,box-shadow .3s,backdrop-filter .3s;
+}
+.nav.scrolled{
+  background:rgba(255,255,255,.97);
+  box-shadow:0 1px 0 var(--border);
+  backdrop-filter:blur(12px);
+}
+.nav-inner{
+  max-width:var(--max);margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  height:72px;gap:24px;
+}
+.nav-logo{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.logo-mark{width:38px;height:38px;flex-shrink:0;}
+.logo-word{
+  font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;
+  font-size:20px;color:#fff;letter-spacing:-0.02em;line-height:1;
+  transition:color .3s;
+}
+.nav.scrolled .logo-word{color:var(--ink);}
+.logo-word span{color:var(--orange);}
+
+.nav-links{display:flex;align-items:center;gap:24px;}
+.nav-links a{
+  font-family:'Roboto',sans-serif;font-weight:500;font-size:14.5px;
+  color:rgba(255,255,255,.8);transition:color .2s;
+}
+.nav.scrolled .nav-links a{color:var(--body);}
+.nav-links a:hover{color:var(--orange) !important;}
+
+.nav-right{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.nav-login{
+  font-size:14px;font-weight:500;color:rgba(255,255,255,.6);
+  transition:color .2s;font-family:'Roboto',sans-serif;
+}
+.nav.scrolled .nav-login{color:var(--body);}
+.nav-login:hover{color:var(--orange) !important;}
+
+/* ============================================================
+   HERO
+============================================================ */
+.hero{
+  position:relative;min-height:92vh;
+  display:flex;flex-direction:column;justify-content:center;
+  overflow:visible; /* allow cards to overlap below */
+  background:var(--dark);
+  padding-bottom:130px; /* space so hero content doesn't sit on card overlap zone */
+}
+/* Background layers — clipped to hero bounds */
+.hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden;}
+.hero-photo{
+  width:100%;height:100%;
+  background:
+    radial-gradient(ellipse 60% 75% at 52% 38%, rgba(245,130,31,.14) 0%, transparent 60%),
+    linear-gradient(158deg, #1e1208 0%, #2c1a10 25%, #1c1a1a 60%, #0f0e0d 100%);
+}
+/* Audience silhouette row */
+.hero-silhouette{
+  position:absolute;bottom:0;left:0;right:0;height:42%;
+  background:linear-gradient(to top, rgba(12,8,5,.92) 0%, rgba(30,14,6,.35) 55%, transparent 100%);
+  clip-path:polygon(0 100%,5% 68%,11% 78%,17% 58%,23% 72%,30% 52%,36% 68%,43% 46%,49% 64%,55% 44%,62% 62%,68% 50%,74% 66%,81% 52%,87% 68%,93% 55%,100% 62%,100% 100%);
+}
+/* Speaker glow */
+.hero-speaker-glow{
+  position:absolute;bottom:20%;left:50%;transform:translateX(-50%);
+  width:220px;height:360px;
+  background:radial-gradient(ellipse at 50% 40%, rgba(245,130,31,.09) 0%, transparent 68%);
+  border-radius:50% 50% 30% 30%;
+}
+/* Warm duotone overlay */
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(160deg, rgba(28,26,26,.78) 0%, rgba(245,130,31,.18) 42%, rgba(28,26,26,.85) 100%);
+}
+/* Bottom vignette for cards */
+.hero-vignette{
+  position:absolute;bottom:0;left:0;right:0;height:260px;
+  background:linear-gradient(to top, rgba(18,14,10,.75) 0%, transparent 100%);
+  pointer-events:none;
+}
+
+/* Hero content */
+.hero-content{
+  position:relative;z-index:2;text-align:center;
+  padding:136px 48px 0;max-width:var(--max);margin:0 auto;width:100%;
+}
+.hero-eyebrow-row{
+  display:flex;align-items:center;justify-content:center;gap:14px;
+  font-family:'Roboto',sans-serif;font-size:11.5px;font-weight:700;
+  letter-spacing:0.15em;text-transform:uppercase;
+  color:rgba(255,255,255,.55);margin-bottom:26px;
+}
+.hero-eyebrow-row::before,.hero-eyebrow-row::after{
+  content:'';display:block;width:36px;height:1px;background:rgba(255,255,255,.28);
+}
+.hero-h1{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:68px;font-weight:800;line-height:1.04;
+  letter-spacing:-0.032em;color:#fff;margin-bottom:26px;
+}
+.hero-h1 .line2{display:block;color:var(--orange);}
+.hero-sub{
+  font-family:'Roboto',sans-serif;font-size:18px;line-height:1.7;
+  color:rgba(255,255,255,.7);max-width:600px;margin:0 auto 42px;
+}
+.hero-ctas{
+  display:flex;align-items:center;justify-content:center;
+  gap:14px;margin-bottom:32px;flex-wrap:wrap;
+}
+.hero-proof{
+  display:flex;align-items:center;justify-content:center;
+  gap:0;flex-wrap:wrap;
+}
+.hero-proof-item{
+  font-size:13px;color:rgba(255,255,255,.5);font-weight:500;
+  font-family:'Roboto',sans-serif;display:flex;align-items:center;gap:14px;
+}
+.hero-proof-item::after{content:'·';color:rgba(255,255,255,.2);font-size:20px;margin-left:14px;}
+.hero-proof-item:last-child::after{display:none;}
+
+/* ============================================================
+   PILLAR CARDS (overlap down into next section)
+============================================================ */
+.pillar-wrap{
+  position:relative;z-index:10;
+  margin-top:-110px; /* pulls cards UP into the hero — Tony Robbins overlap effect */
+  padding:0 48px 0;
+}
+.pillar-grid{
+  max-width:var(--max);margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+}
+.pillar-card{
+  position:relative;height:220px;border-radius:20px;
+  overflow:hidden;cursor:pointer;display:block;
+  transition:transform .3s,box-shadow .3s;
+  box-shadow:0 20px 60px rgba(0,0,0,0.5), 0 4px 16px rgba(0,0,0,0.3); /* float above white */
+}
+.pillar-card:hover{transform:translateY(-6px);box-shadow:0 32px 72px rgba(0,0,0,.55);}
+
+.pc-bg{position:absolute;inset:0;transition:transform .4s;}
+.pillar-card:hover .pc-bg{transform:scale(1.05);}
+.pc-bg-1{background:linear-gradient(140deg,#1e1008 0%,#3a1d08 45%,#241408 100%);}
+.pc-bg-2{background:linear-gradient(140deg,#0c1820 0%,#1a3545 45%,#0f2030 100%);}
+.pc-bg-3{background:linear-gradient(140deg,#0d0f12 0%,#141d2c 45%,#0a0e18 100%);}
+.pc-glow-1::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 80% at 55% 35%,rgba(245,130,31,.18) 0%,transparent 65%);}
+.pc-glow-2::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 80% at 50% 35%,rgba(16,126,179,.18) 0%,transparent 65%);}
+.pc-glow-3::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 80% at 50% 35%,rgba(40,189,185,.15) 0%,transparent 65%);}
+
+.pc-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top, rgba(12,8,5,.9) 0%, rgba(12,8,5,.45) 50%, rgba(12,8,5,.12) 100%);
+}
+/* Orange top accent on first card */
+.pillar-card:first-child::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--orange);z-index:3;border-radius:var(--r-card) var(--r-card) 0 0;
+}
+.pc-content{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:26px 28px;display:flex;justify-content:space-between;align-items:flex-end;
+  z-index:2;
+}
+.pc-name{
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:22px;font-weight:800;
+  color:#fff;letter-spacing:-0.025em;line-height:1.15;
+  text-shadow:0 2px 8px rgba(0,0,0,0.4); /* improves legibility over dark overlay */
+}
+.pc-arrow{
+  width:40px;height:40px;border-radius:50%;background:var(--orange);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  transition:transform .2s;
+}
+.pillar-card:hover .pc-arrow{transform:translateX(4px);}
+.pc-arrow svg{width:17px;height:17px;}
+
+/* ============================================================
+   TRUST BAR
+============================================================ */
+/* Trust bar merges visually with the dark hero — no light strip break */
+.trust-bar{
+  background:var(--dark);
+  padding:150px 48px 52px; /* 150px top clears the overlapping pillar cards */
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.trust-bar-inner{max-width:var(--max);margin:0 auto;}
+.trust-label{
+  text-align:center;font-size:11px;font-weight:700;
+  letter-spacing:0.14em;text-transform:uppercase;
+  color:rgba(255,255,255,0.32);margin-bottom:28px;font-family:'Roboto',sans-serif;
+}
+.trust-logos{
+  display:flex;align-items:center;justify-content:center;
+  gap:52px;flex-wrap:wrap;
+}
+.trust-logo-name{
+  font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;
+  font-size:13.5px;color:rgba(255,255,255,0.28);letter-spacing:0.06em;
+  text-transform:uppercase;transition:color .2s;cursor:default;
+}
+.trust-logo-name:hover{color:rgba(255,255,255,0.65);}
+
+/* ============================================================
+   THE REFRAME
+============================================================ */
+/* Reframe section removed — its content is merged into .approach (Task 4) */
+
+/* ============================================================
+   THE APPROACH (Dalton editorial)
+============================================================ */
+/* Approach = merged Reframe + Approach (Task 3+4). First light section after dark hero/trust. */
+.approach{background:var(--bg-light);padding:var(--pad) 48px;}
+
+/* Reframe statement inside approach — bold provocative opener in the right column */
+.approach-reframe{
+  font-family:'Crimson Pro',Georgia,serif;
+  font-size:22px;font-weight:600;font-style:italic;
+  color:var(--ink);line-height:1.35;
+  margin-bottom:20px;
+  padding-bottom:20px;
+  border-bottom:1px solid var(--divider-light);
+}
+.approach-reframe .r-accent{color:var(--orange);}
+
+/* Hairline divider between The Real Diagnosis label and headline */
+.dh-left .approach-diagnosis{
+  font-size:13px;font-weight:700;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--body);
+  margin-bottom:8px;font-family:'Roboto',sans-serif;
+}
+.approach-inner{max-width:var(--max);margin:0 auto;}
+
+/* Dalton two-column header */
+.dalton-head{
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;
+  align-items:start;margin-bottom:72px;
+}
+.dh-left h2{font-size:46px;line-height:1.1;margin-top:12px;}
+.dh-right{padding-top:10px;}
+.dh-right p{font-size:17px;color:var(--body);line-height:1.72;margin-bottom:18px;}
+
+/* Visual + pillars */
+.approach-body{
+  display:grid;grid-template-columns:1fr 1.15fr;
+  gap:64px;align-items:center;
+}
+.approach-img{
+  width:100%;aspect-ratio:4/3;border-radius:var(--r-card);
+  overflow:hidden;position:relative;
+  background:linear-gradient(135deg,#f5f0e8 0%,#ece5d8 100%);
+}
+.approach-img-overlay{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 65% 55% at 42% 42%,rgba(245,130,31,.1) 0%,transparent 55%);
+  display:flex;align-items:center;justify-content:center;
+}
+.img-label{
+  font-family:'Roboto',sans-serif;font-size:12px;font-weight:600;
+  color:#C4B898;letter-spacing:0.06em;text-transform:uppercase;text-align:center;
+}
+.approach-text h3{font-size:23px;margin-bottom:24px;}
+.approach-pillars{display:flex;flex-direction:column;gap:18px;margin-bottom:28px;}
+.ap-row{display:flex;align-items:flex-start;gap:16px;}
+.ap-ico{
+  width:42px;height:42px;border-radius:11px;
+  background:rgba(245,130,31,.08);border:1px solid rgba(245,130,31,.18);
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;
+}
+.ap-ico.blue{background:rgba(16,126,179,.08);border-color:rgba(16,126,179,.18);}
+.ap-ico.teal{background:rgba(40,189,185,.08);border-color:rgba(40,189,185,.18);}
+.ap-body strong{
+  display:block;font-size:15px;font-weight:700;
+  color:var(--ink);margin-bottom:3px;
+  font-family:'Plus Jakarta Sans',sans-serif;
+}
+.ap-body span{font-size:14px;color:var(--body);line-height:1.55;}
+.pull-q{
+  font-family:'Crimson Pro',Georgia,serif;font-size:19px;font-style:italic;
+  color:var(--body);line-height:1.55;border-left:3px solid var(--orange);
+  padding-left:18px;margin-top:20px;
+}
+
+/* ============================================================
+   STATS SECTION
+============================================================ */
+/* Full dark impact module — one cohesive dark section (Tasks 2 + 3) */
+.stats-section{background:var(--dark);padding:var(--pad) 0;}
+.stats-head{text-align:center;margin-bottom:56px;padding:0 48px;}
+.stats-head h2{font-size:44px;color:#fff;}
+.stats-head h2 span{color:var(--orange);}
+.stats-head p{color:rgba(255,255,255,0.5);margin-top:14px;font-size:17px;}
+
+/* 4-stat dark grid — replaces thin-bordered white cards */
+.stat-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:rgba(255,255,255,0.07);
+  border:1px solid rgba(255,255,255,0.07);border-radius:16px;overflow:hidden;
+  margin:0 48px 48px;
+}
+.s-cell{
+  background:var(--surface-dark);padding:40px 28px;text-align:center;
+  transition:background .2s;
+}
+.s-cell:hover{background:rgba(255,255,255,0.04);}
+.s-num{
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:54px;font-weight:800;
+  color:var(--orange);line-height:1;letter-spacing:-0.03em;margin-bottom:8px;
+}
+.s-lbl{font-size:13px;color:rgba(255,255,255,0.5);font-weight:500;}
+
+/* Dark data band */
+/* Data band sits seamlessly inside the dark stats section — no separate card */
+.data-band{
+  background:rgba(255,255,255,0.04);
+  border-top:1px solid rgba(255,255,255,0.07);
+  border-radius:0;padding:52px 96px;
+  display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:48px;align-items:center;
+  margin:0;
+}
+.db-stat{text-align:center;}
+.db-num{
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:56px;font-weight:800;
+  color:var(--orange);line-height:1;letter-spacing:-0.03em;margin-bottom:10px;
+}
+.db-num.blue-num{color:var(--blue);}
+.db-lbl{font-size:14px;color:rgba(255,255,255,.65);line-height:1.5;font-family:'Roboto',sans-serif;}
+.db-right{border-left:1px solid rgba(255,255,255,.1);padding-left:44px;}
+.db-right p{font-size:14px;color:rgba(255,255,255,.5);line-height:1.65;margin-bottom:18px;font-family:'Roboto',sans-serif;}
+.db-link{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:14px;font-weight:700;color:var(--blue);
+  font-family:'Roboto',sans-serif;transition:gap .2s;
+}
+.db-link:hover{gap:10px;}
+.stats-bottom-pad{padding-bottom:var(--pad);}
+
+/* ============================================================
+   FOUNDER / WILL SCOTT
+============================================================ */
+.founder{background:var(--bg-light);padding:var(--pad) 48px;}
+.founder-inner{
+  max-width:var(--max);margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+}
+.founder-text h2{font-size:44px;line-height:1.1;margin:12px 0 24px;}
+.founder-text p{font-size:17px;color:var(--body);line-height:1.72;margin-bottom:40px;}
+.f-micros{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:36px;}
+.f-micro{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:12px;padding:20px;
+  transition:box-shadow .2s;
+}
+.f-micro:hover{box-shadow:var(--shadow);}
+.f-micro-num{
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:34px;font-weight:800;
+  color:var(--orange);line-height:1;margin-bottom:5px;letter-spacing:-0.02em;
+}
+.f-micro-lbl{font-size:13px;color:var(--body);font-weight:500;}
+
+.founder-visual{position:relative;}
+.f-photo{
+  width:100%;aspect-ratio:4/5;border-radius:var(--r-card);
+  overflow:hidden;position:relative;
+  background:linear-gradient(150deg,#1a2035 0%,#0f1320 100%);
+}
+.f-photo-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 65% 55% at 50% 36%,rgba(245,130,31,.11) 0%,transparent 56%),
+    linear-gradient(155deg,#1e2840 0%,#0f1420 100%);
+  display:flex;align-items:center;justify-content:center;
+}
+.f-initials{
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:110px;font-weight:800;
+  color:rgba(245,130,31,.06);letter-spacing:-0.05em;user-select:none;
+}
+.f-photo-bottom{
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(to top,rgba(13,15,20,.95) 0%,transparent 70%);
+  padding:32px;
+}
+.f-nametag{
+  background:rgba(22,28,40,.9);border:1px solid rgba(255,255,255,.1);
+  border-radius:10px;padding:14px 18px;backdrop-filter:blur(8px);
+}
+.f-nametag h4{font-size:15px;color:#fff;margin-bottom:3px;}
+.f-nametag p{font-size:12px;color:rgba(255,255,255,.5);margin:0;font-family:'Roboto',sans-serif;}
+.f-books{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px;}
+.f-book{
+  border-radius:6px;border:1px solid rgba(255,255,255,.07);
+  padding:8px 6px;font-size:10px;font-weight:600;
+  color:rgba(255,255,255,.45);text-align:center;line-height:1.3;
+  font-family:'Roboto',sans-serif;
+}
+.f-book:nth-child(1){background:rgba(245,130,31,.07);}
+.f-book:nth-child(2){background:rgba(16,126,179,.07);}
+.f-book:nth-child(3){background:rgba(57,181,74,.07);}
+
+/* ============================================================
+   ICP ROUTING
+============================================================ */
+/* ICP: adjacent light section — hairline divider separates it from Founder */
+.icp{background:var(--bg-light);padding:var(--pad) 48px;border-top:1px solid var(--divider-light);}
+.icp-inner{max-width:var(--max);margin:0 auto;}
+.icp-head{text-align:center;margin-bottom:56px;}
+.icp-head h2{font-size:44px;}
+.icp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+.icp-card{
+  background:var(--white);border:1.5px solid var(--border);
+  border-radius:var(--r-card);padding:32px 26px;
+  display:flex;flex-direction:column;gap:14px;cursor:pointer;
+  transition:border-color .25s,box-shadow .25s,transform .25s;
+}
+.icp-card:hover{
+  border-color:var(--orange);
+  box-shadow:var(--shadow-hover);transform:translateY(-3px);
+}
+.icp-card.icp-featured{
+  background:var(--orange);border-color:var(--orange);
+}
+.icp-card.icp-featured .icp-title,
+.icp-card.icp-featured .icp-desc,
+.icp-card.icp-featured .icp-link{color:#fff !important;}
+.icp-card.icp-featured .icp-ico{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.3);}
+.icp-card.icp-featured .icp-arr{background:#fff;}
+.icp-card.icp-featured .icp-arr svg{color:var(--orange);}
+
+.icp-ico{
+  width:50px;height:50px;border-radius:13px;
+  background:rgba(245,130,31,.08);border:1px solid rgba(245,130,31,.2);
+  display:flex;align-items:center;justify-content:center;font-size:21px;flex-shrink:0;
+}
+/* Non-featured ICP icons use neutral warm tone — one accent (orange) per section rule */
+.icp-ico.ico-blue{background:rgba(35,31,32,.05);border-color:rgba(35,31,32,.1);}
+.icp-ico.ico-teal{background:rgba(35,31,32,.05);border-color:rgba(35,31,32,.1);}
+.icp-ico.ico-purple{background:rgba(35,31,32,.05);border-color:rgba(35,31,32,.1);}
+
+.icp-title{
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:19px;font-weight:800;
+  color:var(--ink);line-height:1.2;
+}
+.icp-desc{font-size:14px;color:var(--body);line-height:1.6;flex:1;font-family:'Roboto',sans-serif;}
+.icp-foot{display:flex;align-items:center;justify-content:space-between;}
+.icp-link{font-size:13px;font-weight:700;color:var(--orange);font-family:'Roboto',sans-serif;}
+.icp-arr{
+  width:34px;height:34px;border-radius:50%;
+  background:rgba(245,130,31,.1);
+  display:flex;align-items:center;justify-content:center;
+  transition:transform .2s;
+}
+.icp-card:hover .icp-arr{transform:translateX(4px);}
+.icp-arr svg{width:15px;height:15px;color:var(--orange);}
+.icp-card.icp-featured:hover .icp-arr{transform:translateX(4px);}
+
+/* ============================================================
+   TESTIMONIALS
+============================================================ */
+/* Testimonials — dark anchor section (Task 3) */
+.testis{background:var(--dark);padding:var(--pad) 48px;}
+.testis-inner{max-width:var(--max);margin:0 auto;}
+.testis-head{text-align:center;margin-bottom:56px;}
+.testis-head h2{font-size:44px;color:#fff;}
+.bridge{
+  font-family:'Crimson Pro',Georgia,serif;font-size:19px;
+  color:rgba(255,255,255,0.5);font-style:italic;margin-top:12px;
+}
+
+/* Featured testimonial — dark surface */
+.testi-feature{
+  display:grid;grid-template-columns:340px 1fr;
+  background:var(--surface-dark);border-radius:20px;overflow:hidden;
+  border:1px solid var(--border-dark);margin-bottom:22px;
+}
+.tf-photo{
+  background:linear-gradient(145deg,#1e2a40 0%,#141a28 100%);
+  display:flex;align-items:center;justify-content:center;position:relative;min-height:280px;
+}
+.tf-photo-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 70% at 50% 40%,rgba(245,130,31,.11) 0%,transparent 60%),
+    linear-gradient(145deg,#1e2a40 0%,#141a28 100%);
+}
+.tf-initial{
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:70px;font-weight:800;
+  color:rgba(245,130,31,.14);position:relative;z-index:1;user-select:none;
+}
+.tf-body{padding:52px 52px 48px;display:flex;flex-direction:column;justify-content:center;}
+.big-qm{
+  font-family:'Crimson Pro',Georgia,serif;font-size:82px;line-height:.7;
+  color:var(--orange);display:block;margin-bottom:12px;
+}
+.tf-body blockquote{
+  font-family:'Crimson Pro',Georgia,serif;font-size:29px;font-weight:600;
+  font-style:italic;color:#fff;line-height:1.38;margin-bottom:28px;
+}
+.t-attr strong{
+  display:block;font-size:15px;font-weight:700;
+  color:#fff;font-family:'Plus Jakarta Sans',sans-serif;margin-bottom:2px;
+}
+.t-attr span{font-size:13px;color:rgba(255,255,255,0.45);font-family:'Roboto',sans-serif;}
+
+/* Testimonial grid — dark card spec */
+.testi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.t-card{
+  background:var(--surface-dark);border-radius:14px;padding:26px;
+  border:1px solid var(--border-dark);
+  transition:border-color .2s,transform .2s;
+}
+.t-card:hover{border-color:rgba(245,130,31,0.3);transform:translateY(-2px);}
+.t-q{
+  font-family:'Crimson Pro',Georgia,serif;font-size:17px;
+  font-style:italic;color:rgba(255,255,255,0.88);line-height:1.62;margin-bottom:18px;
+}
+.t-ca{display:flex;align-items:center;gap:10px;}
+.t-av{
+  width:37px;height:37px;border-radius:50%;
+  background:rgba(245,130,31,.12);border:1px solid rgba(245,130,31,.22);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;color:var(--orange);flex-shrink:0;
+  font-family:'Plus Jakarta Sans',sans-serif;
+}
+.t-ca strong{
+  display:block;font-size:13px;font-weight:700;
+  color:#fff;font-family:'Plus Jakarta Sans',sans-serif;
+}
+.t-ca span{font-size:12px;color:rgba(255,255,255,0.42);font-family:'Roboto',sans-serif;}
+
+/* ============================================================
+   LEAD MAGNET BAND (Orange color-block)
+============================================================ */
+.lead-magnet{
+  background:var(--orange);padding:100px 48px;
+  position:relative;overflow:hidden;
+}
+.lead-magnet::before{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(circle,rgba(255,255,255,.05) 1px,transparent 1px);
+  background-size:26px 26px;pointer-events:none;
+}
+.lead-magnet::after{
+  content:'';position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:700px;height:460px;
+  background:radial-gradient(ellipse,rgba(255,255,255,.07) 0%,transparent 65%);
+  pointer-events:none;
+}
+.lm-inner{max-width:700px;margin:0 auto;text-align:center;position:relative;z-index:1;}
+.lm-inner h2{font-size:44px;color:#fff;margin-bottom:18px;line-height:1.1;}
+.lm-inner p{
+  font-size:18px;color:rgba(255,255,255,.82);
+  line-height:1.65;margin-bottom:36px;font-family:'Roboto',sans-serif;
+}
+.lm-cta{
+  background:#fff;color:var(--orange);
+  font-size:16px;font-weight:800;padding:17px 38px;border-radius:8px;
+  border:2px solid #fff;display:inline-flex;align-items:center;gap:10px;
+  transition:background .2s,transform .2s,box-shadow .2s;
+  font-family:'Roboto',sans-serif;
+}
+.lm-cta:hover{background:rgba(255,255,255,.9);transform:translateY(-1px);box-shadow:0 12px 32px rgba(0,0,0,.14);}
+
+/* ============================================================
+   FINAL CTA BAND (dark photo)
+============================================================ */
+.cta-close{
+  position:relative;overflow:hidden;
+  padding:140px 48px;background:var(--dark);
+}
+.cta-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 70% 80% at 60% 40%,rgba(245,130,31,.1) 0%,transparent 58%),
+    linear-gradient(158deg,#1e1208 0%,#251810 30%,#1c1a1a 65%,#0f0e0d 100%);
+}
+/* IMAGE PLACEHOLDER: Will Scott on stage, dark */
+.cta-overlay{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(to right,rgba(28,26,26,.72) 0%,rgba(28,26,26,.38) 50%,rgba(28,26,26,.72) 100%),
+    linear-gradient(to top,rgba(28,26,26,.55) 0%,transparent 55%);
+}
+.cta-close::before{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(circle,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:28px 28px;pointer-events:none;z-index:1;
+}
+.cta-close-inner{
+  max-width:820px;margin:0 auto;text-align:center;
+  position:relative;z-index:2;
+}
+.cta-close-inner .eyebrow{
+  justify-content:center;color:rgba(255,255,255,.5);margin-bottom:14px;
+}
+.cta-close-inner .ey-dot{background:rgba(255,255,255,.4);}
+.cta-close-inner h2{
+  font-size:56px;line-height:1.1;
+  color:#fff;margin-bottom:22px;
+}
+.cta-close-inner p{
+  font-size:18px;color:rgba(255,255,255,.65);
+  line-height:1.68;max-width:600px;margin:0 auto 48px;
+  font-family:'Roboto',sans-serif;
+}
+.cta-btns{
+  display:flex;align-items:center;justify-content:center;
+  gap:14px;margin-bottom:32px;flex-wrap:wrap;
+}
+.check-row{
+  display:flex;align-items:center;justify-content:center;
+  gap:28px;flex-wrap:wrap;
+}
+.ck{
+  display:flex;align-items:center;gap:7px;
+  font-size:13px;color:rgba(255,255,255,.5);font-family:'Roboto',sans-serif;
+}
+.ck::before{content:'✓';color:var(--orange);font-weight:700;font-size:12px;}
+
+/* ============================================================
+   FOOTER
+============================================================ */
+.footer{
+  background:var(--dark);
+  padding:72px 48px 40px;
+  border-top:1px solid rgba(255,255,255,.055);
+}
+.footer-inner{max-width:var(--max);margin:0 auto;}
+.footer-grid{
+  display:grid;grid-template-columns:2.1fr 1fr 1fr 1fr;
+  gap:60px;margin-bottom:56px;
+  padding-bottom:56px;border-bottom:1px solid rgba(255,255,255,.07);
+}
+.footer-brand-row{display:flex;align-items:center;gap:9px;margin-bottom:14px;}
+.footer-brand-row .logo-word{color:#fff;font-size:18px;}
+.footer-tag{
+  font-size:14px;color:rgba(255,255,255,.42);
+  line-height:1.62;margin-bottom:24px;max-width:270px;
+  font-family:'Roboto',sans-serif;
+}
+.email-row{display:flex;gap:0;margin-bottom:22px;max-width:290px;}
+.email-in{
+  flex:1;background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);border-right:none;
+  border-radius:7px 0 0 7px;padding:11px 15px;
+  font-size:14px;color:#fff;font-family:'Roboto',sans-serif;outline:none;
+}
+.email-in::placeholder{color:rgba(255,255,255,.28);}
+.email-in:focus{border-color:var(--orange);}
+.email-btn{
+  background:var(--orange);border:none;border-radius:0 7px 7px 0;
+  padding:11px 15px;cursor:pointer;display:flex;align-items:center;
+  transition:background .2s;
+}
+.email-btn:hover{background:var(--orange-hover);}
+.email-btn svg{width:17px;height:17px;color:#fff;}
+.socials{display:flex;gap:9px;}
+.soc{
+  width:35px;height:35px;border-radius:8px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;color:rgba(255,255,255,.5);
+  transition:all .2s;font-family:'Roboto',sans-serif;
+}
+.soc:hover{border-color:var(--orange);color:var(--orange);}
+.f-col h4{
+  font-family:'Roboto',sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:0.12em;text-transform:uppercase;
+  color:rgba(255,255,255,.3);margin-bottom:20px;
+}
+.f-col ul{display:flex;flex-direction:column;gap:10px;}
+.f-col ul a{
+  font-size:14px;color:rgba(255,255,255,.52);
+  transition:color .2s;font-family:'Roboto',sans-serif;
+}
+.f-col ul a:hover{color:#fff;}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;}
+.footer-bottom p{font-size:13px;color:rgba(255,255,255,.28);font-family:'Roboto',sans-serif;}
+.f-bot-links{display:flex;gap:22px;}
+.f-bot-links a{font-size:13px;color:rgba(255,255,255,.28);transition:color .2s;font-family:'Roboto',sans-serif;}
+.f-bot-links a:hover{color:rgba(255,255,255,.65);}
+
+/* ============================================================
+   RESPONSIVE — TABLET (≤1024px)
+============================================================ */
+@media(max-width:1024px){
+  :root{ --pad:80px; }
+  h1,.hero-h1{font-size:50px;}
+  h2{font-size:36px;}
+  .dalton-head{grid-template-columns:1fr;gap:28px;}
+  .approach-body{grid-template-columns:1fr;gap:40px;}
+  .approach-img{aspect-ratio:16/7;}
+  .founder-inner{grid-template-columns:1fr;gap:48px;}
+  .founder-visual{max-width:480px;margin:0 auto;}
+  .stat-grid{grid-template-columns:repeat(2,1fr);}
+  .data-band{grid-template-columns:1fr 1fr;gap:32px;padding:40px;}
+  .db-right{border-left:none;padding-left:0;border-top:1px solid rgba(255,255,255,.1);padding-top:28px;grid-column:1/-1;}
+  .icp-grid{grid-template-columns:repeat(2,1fr);}
+  .testi-grid{grid-template-columns:repeat(2,1fr);}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:40px;}
+}
+
+/* ============================================================
+   RESPONSIVE — MOBILE (≤768px)
+============================================================ */
+@media(max-width:768px){
+  :root{ --pad:64px; --max:100%; }
+  .container{padding:0 24px;}
+  h1,.hero-h1{font-size:40px;letter-spacing:-0.02em;}
+  h2{font-size:30px;}
+  h3{font-size:22px;}
+
+  /* Nav */
+  .nav{padding:0 24px;}
+  .nav-links{display:none;} /* hamburger needed for full build */
+  .nav-login{display:none;}
+  .nav-cta{font-size:12.5px;padding:10px 16px;}
+
+  /* Hero */
+  .hero{min-height:100svh;padding-bottom:80px;}
+  .hero-content{padding:100px 24px 0;}
+  .hero-h1{font-size:38px;line-height:1.08;}
+  .hero-sub{font-size:16px;}
+  .hero-ctas{flex-direction:column;align-items:center;}
+  .hero-ctas .btn-lg{width:100%;justify-content:center;}
+  .hero-proof{flex-direction:column;gap:8px;align-items:center;}
+  .hero-proof-item::after{display:none;}
+
+  /* Pillar cards */
+  .pillar-wrap{margin-top:-70px;padding:0 20px;}
+  .pillar-grid{grid-template-columns:1fr;gap:12px;}
+  .pillar-card{height:180px;}
+  .pc-name{font-size:18px;}
+
+  /* Trust bar */
+  .trust-bar{padding:120px 24px 44px;}
+  .trust-logos{gap:20px;}
+  .trust-logo-name{font-size:11.5px;}
+
+  /* Reframe removed — merged into approach */
+
+  /* Approach */
+  .approach{padding:64px 24px;}
+  .dalton-head{grid-template-columns:1fr;gap:20px;}
+  .dh-left h2{font-size:30px;}
+  .approach-body{grid-template-columns:1fr;gap:32px;}
+  .approach-img{display:none;} /* hide on mobile */
+
+  /* Stats — dark module on mobile */
+  .stats-section{padding:64px 0;}
+  .stats-head{padding:0 24px;}
+  .stat-grid{grid-template-columns:repeat(2,1fr);margin:0 24px 0;}
+  .s-num{font-size:38px;}
+  .s-cell{padding:28px 16px;}
+  .db-num{font-size:40px;}
+  .data-band{grid-template-columns:1fr;padding:32px 24px;gap:28px;}
+  .db-right{border-left:none;padding-left:0;border-top:1px solid rgba(255,255,255,.1);padding-top:24px;}
+
+  /* Founder */
+  .founder{padding:64px 24px;}
+  .founder-inner{grid-template-columns:1fr;gap:40px;}
+  .founder-text h2{font-size:30px;}
+  .f-micros{grid-template-columns:1fr 1fr;}
+  .founder-visual{max-width:100%;}
+
+  /* ICP */
+  .icp{padding:64px 24px;}
+  .icp-head h2{font-size:30px;}
+  .icp-grid{grid-template-columns:1fr;gap:14px;}
+
+  /* Testimonials */
+  .testis{padding:64px 24px;}
+  .testis-head h2{font-size:30px;}
+  .testi-feature{grid-template-columns:1fr;}
+  .tf-photo{min-height:180px;}
+  .tf-body{padding:32px 28px;}
+  .tf-body blockquote{font-size:22px;}
+  .testi-grid{grid-template-columns:1fr;gap:14px;}
+
+  /* Lead magnet */
+  .lead-magnet{padding:64px 24px;}
+  .lm-inner h2{font-size:28px;}
+  .lm-cta{width:100%;justify-content:center;}
+
+  /* Final CTA */
+  .cta-close{padding:80px 24px;}
+  .cta-close-inner h2{font-size:32px;}
+  .cta-btns{flex-direction:column;align-items:center;}
+  .cta-btns .btn-lg{width:100%;justify-content:center;}
+  .check-row{gap:16px;}
+
+  /* Footer */
+  .footer{padding:48px 24px 32px;}
+  .footer-grid{grid-template-columns:1fr;gap:32px;}
+  .footer-bottom{flex-direction:column;gap:12px;text-align:center;}
+  .f-bot-links{justify-content:center;}
+}
+/* ============================================================
+   NAV SCROLL JS trigger class
+============================================================ */
+</style>
+</head>
+<body>
+
+<!-- ===================== NAVIGATION ===================== -->
+<nav class="nav" id="mainNav">
+    <div class="nav-inner">
+        <a href="/" class="nav-logo">
+            <!-- Colourful Starburst SVG Mark -->
+            <svg class="logo-mark" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M30 4L36.5 18.5L30 14.5L23.5 18.5Z" fill="#F5821F"/>
+                <circle cx="30" cy="3.2" r="3.2" fill="#F5821F"/>
+                <path d="M5.5 23L19.5 27.5L16 21L8.5 13Z" fill="#753B97"/>
+                <circle cx="4" cy="20" r="3.2" fill="#753B97"/>
+                <path d="M54.5 23L40.5 27.5L44 21L51.5 13Z" fill="#8DC63F"/>
+                <circle cx="56" cy="20" r="3.2" fill="#8DC63F"/>
+                <path d="M5.5 37L19.5 32.5L16 39L8.5 47Z" fill="#107EB3"/>
+                <circle cx="4" cy="40" r="3.2" fill="#107EB3"/>
+                <path d="M54.5 37L40.5 32.5L44 39L51.5 47Z" fill="#28BDB9"/>
+                <circle cx="56" cy="40" r="3.2" fill="#28BDB9"/>
+                <circle cx="30" cy="30" r="5" fill="white"/>
+                <path d="M30 22L33 29L30 26L27 29Z" fill="white" opacity=".4"/>
+            </svg>
+            <div class="logo-word">Cultureful<span>™</span></div>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="#">Organizations</a></li>
+            <li><a href="#">Coaches</a></li>
+            <li><a href="#">Speaking</a></li>
+            <li><a href="#">Resources</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+
+        <div class="nav-right">
+            <a href="#" class="nav-login">Login</a>
+            <a href="#" class="btn btn-primary" style="font-size:13.5px;padding:11px 20px;">Take the Free Culture Checkup</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+    <div class="hero-bg">
+        <div class="hero-photo">
+            <!-- IMAGE PLACEHOLDER: Will Scott on stage, wide, crowd visible — warm orange duotone -->
+        </div>
+        <div class="hero-silhouette"></div>
+        <div class="hero-speaker-glow"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-vignette"></div>
+    </div>
+
+    <div class="hero-content">
+        <div class="hero-eyebrow-row">WHEN PEOPLE THRIVE, ORGANIZATIONS PERFORM</div>
+
+        <h1 class="hero-h1">
+            Operationalize Culture. Align People.
+            <span class="line2">Drive Performance.</span>
+        </h1>
+
+        <p class="hero-sub">
+            Cultureful helps organizations operationalize culture through values-driven leadership, measurable accountability, and practical systems that help people and performance thrive together.
+        </p>
+
+        <div class="hero-ctas">
+            <a href="#" class="btn btn-primary btn-lg">Take the Free Culture Checkup</a>
+            <a href="#" class="btn btn-ghost-w btn-lg">Book a Discovery Call &nbsp;→</a>
+        </div>
+
+        <div class="hero-proof">
+            <span class="hero-proof-item">Built on The Culture Fix®</span>
+        </div>
+    </div>
+
+</section>
+
+<!-- 3 Pillar Cards — outside hero, overlapping UP into hero with negative margin-top -->
+<div class="pillar-wrap">
+    <div class="pillar-grid">
+
+        <a href="/culture-clarity" class="pillar-card">
+            <div class="pc-bg pc-bg-1 pc-glow-1"></div>
+            <div class="pc-overlay"></div>
+            <!-- IMAGE PLACEHOLDER: Will Scott / leadership session -->
+            <div class="pc-content">
+                <div class="pc-name">Culture Clarity™</div>
+                <div class="pc-arrow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </div>
+            </div>
+        </a>
+
+        <a href="/culture-fulfillment" class="pillar-card">
+            <div class="pc-bg pc-bg-2 pc-glow-2"></div>
+            <div class="pc-overlay"></div>
+            <!-- IMAGE PLACEHOLDER: Will Scott on stage / workshop -->
+            <div class="pc-content">
+                <div class="pc-name">Culture Fulfillment™</div>
+                <div class="pc-arrow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </div>
+            </div>
+        </a>
+
+        <a href="/optimode" class="pillar-card">
+            <div class="pc-bg pc-bg-3 pc-glow-3"></div>
+            <div class="pc-overlay"></div>
+            <!-- IMAGE PLACEHOLDER: Will Scott / program moment -->
+            <div class="pc-content">
+                <div class="pc-name">Cultureful OptiMode™</div>
+                <div class="pc-arrow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </div>
+            </div>
+        </a>
+
+    </div>
+</div>
+
+<!-- ===================== TRUST BAR ===================== -->
+<div class="trust-bar">
+    <div class="trust-bar-inner">
+        <div class="trust-label">Trusted by leaders at</div>
+        <div class="trust-logos">
+            <span class="trust-logo-name">EO</span>
+            <span class="trust-logo-name">Harley-Davidson</span>
+            <span class="trust-logo-name">Accenture</span>
+            <span class="trust-logo-name">BMW / MINI</span>
+            <span class="trust-logo-name">Kellanova</span>
+            <span class="trust-logo-name">Crowe</span>
+            <span class="trust-logo-name">Regeneron</span>
+            <span class="trust-logo-name">SHRM</span>
+            <span class="trust-logo-name">CultureCon</span>
+        </div>
+    </div>
+</div>
+
+<!-- ===================== THE APPROACH (merged with Reframe — Task 4) ===================== -->
+<section class="approach">
+    <div class="approach-inner">
+
+        <!-- Dalton two-column editorial header — reframe diagnosis lives in right column -->
+        <div class="dalton-head">
+            <div class="dh-left">
+                <div class="eyebrow">
+                    <span class="ey-dot"></span>
+                    The Real Diagnosis
+                </div>
+                <h2>Human-centered performance,<br><span class="orange">operationalized.</span></h2>
+            </div>
+            <div class="dh-right">
+                <!-- Reframe statement — bold provocative opener -->
+                <p class="approach-reframe">
+                    Most companies don't have a motivation problem.<br>
+                    <span class="r-accent">They have an alignment problem.</span>
+                </p>
+                <p>Teams don't underperform because people don't care. They underperform because leadership behaviors, accountability, and expectations are inconsistent. Fulfilled people, aligned leadership, and operational systems create sustainable performance — we operationalize them so culture is measured, reinforced, and lived consistently, every day.</p>
+                <p style="margin-top:14px;">This is performance through human flourishing.</p>
+                <a href="#" class="btn-text-link" style="margin-top:20px;display:inline-flex;">Explore the Cultureful ecosystem &nbsp;→</a>
+            </div>
+        </div>
+
+        <!-- Visual + pillars -->
+        <div class="approach-body">
+            <div class="approach-img">
+                <div class="approach-img-overlay">
+                    <div class="img-label">[ Real team / leadership moment ]</div>
+                </div>
+                <!-- IMAGE PLACEHOLDER: Real team / leadership moment -->
+            </div>
+
+            <div class="approach-text">
+                <h3>Three forces working together, every day.</h3>
+                <div class="approach-pillars">
+                    <div class="ap-row">
+                        <div class="ap-ico">🔍</div>
+                        <div class="ap-body">
+                            <strong>Measure</strong>
+                            <span>Real-time culture intelligence that gives leaders visibility — not just annual survey scores filed away.</span>
+                        </div>
+                    </div>
+                    <div class="ap-row">
+                        <div class="ap-ico blue">🔄</div>
+                        <div class="ap-body">
+                            <strong>Reinforce</strong>
+                            <span>Values-based recognition and accountability built into how the organization actually operates.</span>
+                        </div>
+                    </div>
+                    <div class="ap-row">
+                        <div class="ap-ico teal">⚙️</div>
+                        <div class="ap-body">
+                            <strong>Operationalize</strong>
+                            <span>Goals, performance, and people — all connected so culture is never separate from the business.</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="pull-q">
+                    "Fulfilled people + aligned leadership + operational systems = sustainable performance."
+                </p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ===================== STATS — full dark module (Tasks 2 + 3) ===================== -->
+<div class="stats-section">
+    <!-- Header -->
+    <div class="stats-head">
+        <div class="eyebrow eyebrow-center" style="color:rgba(255,255,255,0.55);">
+            <span class="ey-dot" style="background:rgba(255,255,255,0.4);"></span>
+            Real-World Impact
+        </div>
+        <h2>Numbers that come from <span class="orange">actual implementation.</span></h2>
+        <p>Developed through real-world work in scaling companies — not built in a lab.</p>
+    </div>
+
+    <!-- 4-metric dark grid -->
+    <div class="stat-grid">
+        <div class="s-cell"><div class="s-num">167+</div><div class="s-lbl">Diagnostics Delivered</div></div>
+        <div class="s-cell"><div class="s-num">9,985+</div><div class="s-lbl">Employees Surveyed</div></div>
+        <div class="s-cell"><div class="s-num">23+</div><div class="s-lbl">Countries</div></div>
+        <div class="s-cell"><div class="s-num">5,000+</div><div class="s-lbl">Leaders Trained</div></div>
+    </div>
+
+    <!-- Contextual data points — same dark module, separated by top border -->
+    <div class="data-band">
+            <div class="db-stat">
+                <div class="db-num">50–200%</div>
+                <div class="db-lbl">Cost to replace one employee<br><span style="opacity:.55;font-size:12px;">(of their annual salary)</span></div>
+            </div>
+            <div class="db-stat">
+                <div class="db-num blue-num">60–70%</div>
+                <div class="db-lbl">Productive capacity of a<br>disengaged employee</div>
+            </div>
+            <div class="db-right">
+                <p>From the 2025 Cultureful Workplace Culture Report — 8,671 employees, 44+ organizations, proprietary data. Frame: hidden performance loss, not happiness scores.</p>
+                <a href="#" class="db-link">Download the report &nbsp;→</a>
+            </div>
+    </div>
+</div>
+
+<!-- ===================== FOUNDER ===================== -->
+<section class="founder">
+    <div class="founder-inner">
+        <div class="founder-text">
+            <div class="eyebrow">
+                <span class="ey-dot"></span>
+                The Methodology Behind the Movement
+            </div>
+            <h2>Built on The Culture Fix® —<br><span class="orange">Will Scott's life work.</span></h2>
+            <p>Cultureful is the work of Will Scott — culture strategist, keynote speaker, and three-time bestselling author. Developed through real-world implementation in scaling companies across 30+ countries, his frameworks have trained thousands of leaders to build cultures their people stayed for.</p>
+
+            <div class="f-micros">
+                <div class="f-micro"><div class="f-micro-num">3×</div><div class="f-micro-lbl">Bestselling Author</div></div>
+                <div class="f-micro"><div class="f-micro-num">92%</div><div class="f-micro-lbl">Speaking Booking Rate</div></div>
+                <!-- TODO: confirm Will-specific stats with owner — suggested below -->
+                <div class="f-micro"><div class="f-micro-num">3</div><div class="f-micro-lbl">Published Books</div></div>
+                <div class="f-micro"><div class="f-micro-num">100s</div><div class="f-micro-lbl">of Keynotes Delivered</div></div>
+            </div>
+
+            <a href="/about" class="btn-text-link" style="font-size:16px;">Read Will's story &nbsp;→</a>
+        </div>
+
+        <div class="founder-visual">
+            <!-- IMAGE PLACEHOLDER: Will Scott portrait / on stage -->
+            <div class="f-photo">
+                <div class="f-photo-bg">
+                    <div class="f-initials">WS</div>
+                </div>
+                <div class="f-photo-bottom">
+                    <div class="f-nametag">
+                        <h4>Will Scott</h4>
+                        <p>Founder, Cultureful · Author · Speaker · 30+ Countries</p>
+                    </div>
+                    <div class="f-books">
+                        <div class="f-book">The Culture Fix®</div>
+                        <div class="f-book">The Glorious Book of CoreCharts</div>
+                        <div class="f-book">The Gift of Culture</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== ICP ROUTING ===================== -->
+<section class="icp">
+    <div class="icp-inner">
+        <div class="icp-head">
+            <div class="eyebrow eyebrow-center">
+                <span class="ey-dot"></span>
+                Where Will You Start?
+            </div>
+            <h2>Built for the people who <span class="orange">shape culture.</span></h2>
+        </div>
+
+        <div class="icp-grid">
+            <!-- Card 1 — FEATURED (orange) -->
+            <a href="/organizations" class="icp-card icp-featured">
+                <div class="icp-ico">🏢</div>
+                <div class="icp-title">Organizations</div>
+                <div class="icp-desc">Founder-led companies scaling without losing what made them work.</div>
+                <div class="icp-foot">
+                    <span class="icp-link">Explore →</span>
+                    <div class="icp-arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                </div>
+            </a>
+
+            <!-- Card 2 -->
+            <a href="/coaches" class="icp-card">
+                <div class="icp-ico ico-blue">🤝</div>
+                <div class="icp-title">Coaches &amp; Advisors</div>
+                <div class="icp-desc">Infrastructure that strengthens and operationalizes the work you already do.</div>
+                <div class="icp-foot">
+                    <span class="icp-link">Explore →</span>
+                    <div class="icp-arr"><svg viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                </div>
+            </a>
+
+            <!-- Card 3 -->
+            <a href="/hospitality" class="icp-card">
+                <div class="icp-ico ico-teal">🏨</div>
+                <div class="icp-title">Hospitality</div>
+                <div class="icp-desc">Because guest experience is employee culture.</div>
+                <div class="icp-foot">
+                    <span class="icp-link">Explore →</span>
+                    <div class="icp-arr"><svg viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                </div>
+            </a>
+
+            <!-- Card 4 -->
+            <a href="/speaking" class="icp-card">
+                <div class="icp-ico ico-purple">🎙️</div>
+                <div class="icp-title">Speaking</div>
+                <div class="icp-desc">Bring the culture talk leaders actually remember to your stage.</div>
+                <div class="icp-foot">
+                    <span class="icp-link">Explore →</span>
+                    <div class="icp-arr"><svg viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== TESTIMONIALS ===================== -->
+<section class="testis">
+    <div class="testis-inner">
+        <div class="testis-head">
+            <div class="eyebrow eyebrow-center">
+                <span class="ey-dot"></span>
+                What Leaders Say
+            </div>
+            <h2>Trusted by leaders who've <span class="orange">lived the transformation.</span></h2>
+            <p class="bridge">The Culture Fix® framework — now operationalized inside Cultureful.</p>
+        </div>
+
+        <!-- Featured testimonial -->
+        <div class="testi-feature">
+            <div class="tf-photo">
+                <div class="tf-photo-bg"></div>
+                <!-- IMAGE PLACEHOLDER: Patrick Cheo headshot -->
+                <div class="tf-initial">PC</div>
+            </div>
+            <div class="tf-body">
+                <span class="big-qm">"</span>
+                <blockquote>"Completely redefined how we think about Culture."</blockquote>
+                <div class="t-attr">
+                    <strong>Patrick Cheo</strong>
+                    <span>Entrepreneurs' Organization</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4-card grid -->
+        <div class="testi-grid">
+            <div class="t-card">
+                <p class="t-q">"Nothing short of phenomenal. The clarity it brought to our leadership team was immediate and lasting."</p>
+                <div class="t-ca"><div class="t-av">AB</div><div><strong>Arshad Bholim</strong><span>Crowe</span></div></div>
+            </div>
+            <div class="t-card">
+                <p class="t-q">"The insights sparked immediate action and ongoing leadership conversations across the entire organization."</p>
+                <div class="t-ca"><div class="t-av">MO</div><div><strong>Mark Orlando</strong><span>BMW North America</span></div></div>
+            </div>
+            <div class="t-card">
+                <p class="t-q">"Will brought real-world examples and a clear path to culture change our team actually followed through on."</p>
+                <div class="t-ca"><div class="t-av">MM</div><div><strong>Mark Morgan</strong><span>Kellogg's</span></div></div>
+            </div>
+            <div class="t-card">
+                <p class="t-q">"Will connected with our people so deeply that embracing his ideas felt completely natural."</p>
+                <div class="t-ca"><div class="t-av">DS</div><div><strong>Dennis Serrano</strong><span>St. Luke's Hospital</span></div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== LEAD MAGNET (orange color-block) ===================== -->
+<section class="lead-magnet">
+    <div class="lm-inner">
+        <h2>See how your culture is really<br>performing — in 5 minutes.</h2>
+        <p>Take the free Culture Performance Scorecard™ and get an instant read on where your culture is driving performance and where it's quietly costing you.</p>
+        <a href="#" class="lm-cta">
+            Take the Free Culture Checkup
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+</section>
+
+<!-- ===================== FINAL CTA BAND ===================== -->
+<section class="cta-close">
+    <div class="cta-bg"></div>
+    <!-- IMAGE PLACEHOLDER: Will Scott on stage, dark -->
+    <div class="cta-overlay"></div>
+
+    <div class="cta-close-inner">
+        <div class="eyebrow">
+            <span class="ey-dot"></span>
+            LEAD CULTUREFULLY
+        </div>
+        <h2>
+            Bring culture alive. Make it thrive.<br>
+            <span class="orange">Use it to drive performance.</span>
+        </h2>
+        <p>Start with a conversation about where your culture is today — and where it could take your business.</p>
+
+        <div class="cta-btns">
+            <a href="#" class="btn btn-primary btn-lg">Book a Discovery Call</a>
+            <a href="#" class="btn btn-ghost-w btn-lg">Take the Free Culture Checkup &nbsp;→</a>
+        </div>
+
+        <div class="check-row">
+            <span class="ck">Built on The Culture Fix®</span>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-brand-row">
+                    <svg width="30" height="30" viewBox="0 0 60 60" fill="none">
+                        <path d="M30 4L36.5 18.5L30 14.5L23.5 18.5Z" fill="#F5821F"/>
+                        <circle cx="30" cy="3.2" r="3.2" fill="#F5821F"/>
+                        <path d="M5.5 23L19.5 27.5L16 21L8.5 13Z" fill="#753B97"/>
+                        <circle cx="4" cy="20" r="3.2" fill="#753B97"/>
+                        <path d="M54.5 23L40.5 27.5L44 21L51.5 13Z" fill="#8DC63F"/>
+                        <circle cx="56" cy="20" r="3.2" fill="#8DC63F"/>
+                        <path d="M5.5 37L19.5 32.5L16 39L8.5 47Z" fill="#107EB3"/>
+                        <circle cx="4" cy="40" r="3.2" fill="#107EB3"/>
+                        <path d="M54.5 37L40.5 32.5L44 39L51.5 47Z" fill="#28BDB9"/>
+                        <circle cx="56" cy="40" r="3.2" fill="#28BDB9"/>
+                        <circle cx="30" cy="30" r="5" fill="white"/>
+                    </svg>
+                    <div class="logo-word">Cultureful<span>™</span></div>
+                </div>
+                <p class="footer-tag">When people thrive, organizations perform.</p>
+                <div class="email-row">
+                    <input type="email" class="email-in" placeholder="Enter your email">
+                    <button class="email-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </button>
+                </div>
+                <div class="socials">
+                    <a href="#" class="soc">in</a>
+                    <a href="#" class="soc">ig</a>
+                    <a href="#" class="soc">yt</a>
+                </div>
+            </div>
+
+            <div class="f-col">
+                <h4>Ecosystem</h4>
+                <ul>
+                    <li><a href="#">Culture Clarity™</a></li>
+                    <li><a href="#">Culture Fulfillment™</a></li>
+                    <li><a href="#">Cultureful OptiMode™</a></li>
+                </ul>
+            </div>
+
+            <div class="f-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">The Culture Fix® Book</a></li>
+                    <li><a href="#">2025 Culture Report</a></li>
+                    <li><a href="#">Podcast</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+
+            <div class="f-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Will Scott</a></li>
+                    <li><a href="#">For Coaches</a></li>
+                    <li><a href="#">Speaking</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Cultureful™. All rights reserved.</p>
+            <div class="f-bot-links">
+                <a href="#">Terms</a>
+                <a href="#">Privacy</a>
+                <a href="#">Support</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+// Sticky nav — transparent → white on scroll
+const nav = document.getElementById('mainNav');
+const onScroll = () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+};
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+</script>
+
+</body>
+</html>
